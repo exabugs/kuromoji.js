@@ -84,12 +84,12 @@ Tokenizer.prototype.auto = function(text) {
       if (!autostop[key]) {
 
         // JISでは2音以下の単語は長音記号を省略せず、3音以上の単語は長音記号を省略する
-        if (3 < key.length) {
+        if (3 < key.length && key.charAt(key.length - 1) === 'ー') {
           // カバー
           // エラー
           // コンピューター → コンピュータ
           // メモリー      → メモリ
-          key = key.replace(/ー$/, '');
+          key = key.slice(0, -1);
         }
 
         memo[key] = true;
