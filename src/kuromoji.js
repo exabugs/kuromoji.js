@@ -27,7 +27,8 @@ var kuromoji = {
     },
     dictionaryBuilder: function () {
         return new DictionaryBuilder();
-    }
+    },
+    version: require('../package.json').version
 };
 
 module.exports = kuromoji;

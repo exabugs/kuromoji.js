@@ -17,6 +17,8 @@
 
 "use strict";
 
+var jaCodeMap = require('jaCodeMap');
+
 var ViterbiBuilder = require("./viterbi/ViterbiBuilder");
 var ViterbiSearcher = require("./viterbi/ViterbiSearcher");
 var IpadicFormatter = require("./util/IpadicFormatter");
@@ -57,6 +59,44 @@ Tokenizer.splitByPunctuation = function (input) {
         tail = tail.substring(index + 1);
     }
     return sentences;
+};
+
+/**
+ * 一般的な名詞を抽出するユーティリティ
+ *
+ * 未知語処理の定義
+ * https://taku910.github.io/mecab/unk.html
+ */
+function map(array) {
+  return array.reduce(function(memo, v) {
+    memo[v] = true;
+    return memo;
+  }, {});
+}
+var automap = map(['一般', '固有名詞', '数', 'サ変接続', '形容動詞語幹', '副詞可能', 'アルファベット']);
+var autostop = map(['、', "～", '？', ',', '.', "#", '-', '/']);
+Tokenizer.prototype.auto = function(text) {
+  text = jaCodeMap.auto(text).toLowerCase();
+  var tokens = this.tokenize(text);
+  return Object.keys(tokens.reduce(function(memo, token) {
+    if (automap[token.pos_detail_1]) {
+      var key = (token.word_type === 'KNOWN') ? token.basic_form : token.surface_form;
+      if (!autostop[key]) {
+
+        // JISでは2音以下の単語は長音記号を省略せず、3音以上の単語は長音記号を省略する
+        if (3 < key.length) {
+          // カバー
+          // エラー
+          // コンピューター → コンピュータ
+          // メモリー      → メモリ
+          key = key.replace(/ー$/, '');
+        }
+
+        memo[key] = true;
+      }
+    }
+    return memo;
+  }, {}));
 };
 
 /**

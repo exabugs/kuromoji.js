@@ -47,7 +47,7 @@ gulp.task("clean-dict", (done) => {
 });
 
 gulp.task("create-dat-files", (done) => {
-    const IPADic = require('mecab-ipadic-seed');
+    const IPADic = require('./mecab-ipadic-seed');
     const kuromoji = require("./src/kuromoji.js");
 
     if (!fs.existsSync("dict/")) {

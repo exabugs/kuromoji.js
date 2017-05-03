@@ -1,4 +1,5 @@
 "use strict";
+var jaCodeMap = require('jaCodeMap');
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -32,6 +33,10 @@ var SequentialDictionariesReader = function () {
         value: function read(callback) {
             var promises = this.readers.map(function (reader) {
                 return reader.read(function (line) {
+
+                    // 正規化
+                    line = jaCodeMap.auto(line).toLowerCase();
+
                     callback(line);
                 });
             });
