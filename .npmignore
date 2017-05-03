@@ -8,3 +8,4 @@ gulpfile.js
 .codeclimate.yml
 .jshintrc
 .npmignore
+npm_publish.sh
