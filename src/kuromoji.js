@@ -23,6 +23,8 @@ var DictionaryBuilder = require("./dict/builder/DictionaryBuilder");
 // Public methods
 var kuromoji = {
     builder: function (option) {
+        option = option || {};
+        option.dicPath = option.dicPath || __dirname + "/../dict";
         return new TokenizerBuilder(option);
     },
     dictionaryBuilder: function () {
