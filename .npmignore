@@ -1,0 +1,10 @@
+mecab-ipadic-seed/
+test/
+demo/
+example/
+gulpfile.js
+.travis.yml
+.idea
+.codeclimate.yml
+.jshintrc
+.npmignore
