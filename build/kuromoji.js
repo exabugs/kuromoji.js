@@ -7088,7 +7088,7 @@ d=(h[l++]|h[l++]<<8|h[l++]<<16|h[l++]<<24)>>>0;(a.length&4294967295)!==d&&n(Erro
 module.exports={
   "name": "@exabugs/kuromoji",
   "description": "JavaScript implementation of Japanese morphological analyzer",
-  "version": "0.2.21",
+  "version": "0.2.23",
   "author": "exabugs <exabugs@gmail.com>",
   "browser": {
     "./src/loader/NodeDictionaryLoader.js": "./src/loader/BrowserDictionaryLoader.js"
@@ -7235,7 +7235,7 @@ function map(array) {
   }, {});
 }
 var automap = map(['一般', '固有名詞', '数', 'サ変接続', '形容動詞語幹', '副詞可能', 'アルファベット']);
-var autostop = map(['、', "～", '？', ',', '.', "#", '-', '/']);
+var autostop = map(['、', "～", '？', '・', '－', '：', ',', '.', "#", '-', '‐', '−', '/', "(", ")", "[", "]"]);
 Tokenizer.prototype.auto = function(text) {
   text = jaCodeMap.auto(text).toLowerCase();
   var tokens = this.tokenize(text);
