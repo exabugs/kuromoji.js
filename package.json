@@ -1,7 +1,7 @@
 {
   "name": "@exabugs/kuromoji",
   "description": "JavaScript implementation of Japanese morphological analyzer",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "author": "exabugs <exabugs@gmail.com>",
   "browser": {
     "./src/loader/NodeDictionaryLoader.js": "./src/loader/BrowserDictionaryLoader.js"

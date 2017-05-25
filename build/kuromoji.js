@@ -7088,7 +7088,7 @@ d=(h[l++]|h[l++]<<8|h[l++]<<16|h[l++]<<24)>>>0;(a.length&4294967295)!==d&&n(Erro
 module.exports={
   "name": "@exabugs/kuromoji",
   "description": "JavaScript implementation of Japanese morphological analyzer",
-  "version": "0.2.23",
+  "version": "0.2.25",
   "author": "exabugs <exabugs@gmail.com>",
   "browser": {
     "./src/loader/NodeDictionaryLoader.js": "./src/loader/BrowserDictionaryLoader.js"
